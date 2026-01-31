@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     tags:
-      - 'v*' 
+      - "v*"
   pull_request:
     branches: [ master ]
 
@@ -12,17 +12,37 @@ jobs:
   test:
     name: Unit Tests & Coverage
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
 
       - name: Run tests with coverage
-        run: npm run test --coverage
+        run: npm test -- --run --coverage
+
+  deploy:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    environment: production
+    needs: test
+    if: startsWith(github.ref, 'refs/tags/v') 
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
+      - name: Deploy to Vercel
+        run: vercel deploy --prod --yes \
+          --token=${{ secrets.VERCEL_TOKEN }} \
+          --project=${{ secrets.VERCEL_PROJECT_ID }}
+          --name open-spotify-stats
