@@ -8,7 +8,9 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build": "vue-tsc && vite build",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
@@ -27,15 +29,18 @@
     "vuetify": "^3.11.4"
   },
   "devDependencies": {
+    "@pinia/testing": "^1.0.3",
     "@tsconfig/node24": "^24.0.3",
     "@types/node": "^24.10.1",
     "@vitejs/plugin-vue": "^6.0.2",
     "@vue/eslint-config-prettier": "^10.2.0",
     "@vue/eslint-config-typescript": "^14.6.0",
+    "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.8.1",
     "eslint": "^9.39.1",
     "eslint-plugin-vue": "~10.5.1",
     "jiti": "^2.6.1",
+    "jsdom": "^27.4.0",
     "npm-run-all2": "^8.0.4",
     "prettier": "3.6.2",
     "sass": "^1.97.0",
@@ -43,6 +48,7 @@
     "vite": "^7.2.4",
     "vite-plugin-vue-devtools": "^8.0.5",
     "vite-plugin-vuetify": "^2.1.2",
+    "vitest": "^4.0.18",
     "vue-tsc": "^3.1.5"
   }
 }

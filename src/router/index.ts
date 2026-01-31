@@ -1,6 +1,6 @@
 import AboutView from '@/pages/AboutView.vue'
-import Dashboard from '@/pages/Dashboard.vue'
-import Main from '@/pages/Main.vue'
+import Dashboard from '@/pages/DashboardView.vue'
+import Main from '@/pages/MainView.vue'
 import PrivacyView from '@/pages/PrivacyView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
