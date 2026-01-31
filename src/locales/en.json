@@ -1,0 +1,148 @@
+{
+  "settings": {
+    "title": "Settings",
+    "stream_criteria": "Stream Criteria",
+    "stream_desc": "Set the minimum duration for a play to be counted.",
+    "seconds": "Seconds",
+    "timezone_title": "Timezone",
+    "timezone_desc": "Adjust the timezone to align the history with your location.",
+    "language": "Language",
+    "language_desc": "Select the interface language.",
+    "save": "Save Changes"
+  },
+  "dashboard": {
+    "welcome": "Welcome to your stats"
+  },
+  "upload": {
+    "title": "Upload your file",
+    "subtitle": "Drag and drop or click"
+  },
+  "footer": {
+    "brand": "Open Spotify Stats",
+    "legal": "Licensed under GPL v3 · Open Source · Privacy First"
+  },
+  "curious_stats": {
+    "title": "Fun Stats",
+    "hated_artist": {
+      "title": "Hard pass!",
+      "description": "{count} skips in less than {limit} seconds this year"
+    },
+    "day_night": {
+      "phrase": "Music is always a vibe, no matter the hour!",
+      "name": "anytime",
+      "morning": {
+        "phrase": "The early bird gets the tunes!",
+        "name": "the morning"
+      },
+      "afternoon": {
+        "phrase": "The afternoon is your personal playlist.",
+        "name": "the afternoon"
+      },
+      "night": {
+        "phrase": "Late nights are for musical therapy.",
+        "name": "the night"
+      },
+      "preference": "You prefer listening to music during {period}"
+    },
+    "platform": {
+      "default_phrase": "Music on the go!",
+      "default_name": "mobile",
+      "desktop": {
+        "phrase": "Desktop enthusiast",
+        "name": "computer"
+      },
+      "preference": "You listen to music most when you're on your {device}"
+    }
+  },
+  "header": {
+    "logo": "Open Spotify Stats",
+    "privacy": "Privacy",
+    "about": "About"
+  },
+  "heatmap": {
+    "title": "Heatmap",
+    "scroll_hint": "← Swipe to see the whole year →"
+  },
+  "top_songs": {
+    "title": "Top 10 Most Streamed Songs",
+    "streams": "Streams",
+    "count": "Total streams: {count}",
+    "empty": "No records found."
+  },
+  "year_stats": {
+    "title": "Streaming History",
+    "total_streams": "Total Streams",
+    "tooltip_suffix": "streams",
+    "empty": "No data available for this period."
+  },
+  "biological_clock": {
+    "title": "Musical Biological Clock",
+    "streams": "Streams",
+    "plays": "plays"
+  },
+  "top_artists": {
+    "title": "Top 5 Most Streamed Artists",
+    "rank_one": "Rank #1",
+    "streams_count": "Total streams: {count}",
+    "empty": "No records found."
+  },
+  "about": {
+    "title": "About the Project",
+    "subtitle": "Rediscovering your musical history, one data point at a time.",
+    "mission": {
+      "title": "The Mission",
+      "text": "Spotify Stats was born out of a simple need: curiosity. Streaming platforms collect a massive amount of data about us, but they rarely give us the tools to understand that data in depth.<br><br>This project aims to give that power back to the user. Whether it's to remember the soundtrack of a specific year, understand how your musical taste has shifted, or just fine-tune stats with surgical precision (like timezones and skip criteria), here you're in control."
+    },
+    "features": {
+      "wrapped": {
+        "title": "Beyond Wrapped",
+        "text": "Why wait for December? Analyze your listening habits from January to January, or filter by specific periods whenever you want."
+      },
+      "control": {
+        "title": "Total Control",
+        "text": "Define what counts as a 'stream'. Adjust minimum play time, timezones, and ignore accidental skips."
+      },
+      "opensource": {
+        "title": "Open Source",
+        "text": "Transparency is key. All code is available for study, modification, and community contribution."
+      }
+    },
+    "powered_by": "Powered By",
+    "footer": {
+      "community_note": "This project is community-maintained and distributed under the <strong>GPL v3</strong> license.<br>Found a bug or have an idea?",
+      "github_btn": "View on GitHub",
+      "developed_by": "Developed by <strong>Magno Korzekwa</strong>",
+      "copyright": "Copyright © 2026. All rights reserved under the GPLv3 license.",
+      "version": "Version {version}"
+    }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "subtitle": "Full transparency on how your data is (and isn't) processed.",
+    "zero_upload": {
+      "title": "Zero-Upload Architecture",
+      "text": "This project operates under a strict <strong>local processing (Client-Side)</strong> philosophy. When you select your Spotify JSON files, processing occurs exclusively in your browser's RAM, using technologies like <em>Web Workers</em>.",
+      "guarantee_title": "Technical Guarantee:",
+      "guarantee_text": "Not a single byte of your files is sent to external servers, cloud, or databases. If you disconnect your internet after loading the page, the system will continue to work perfectly."
+    },
+    "volatile_storage": {
+      "title": "Volatile Storage",
+      "text": "We do not use tracking cookies or persistent databases for your files. The processing results exist only while the browser tab is open.<br><br>Upon refreshing the page or closing the browser, <strong>all imported data is instantly discarded</strong> from your device's memory."
+    },
+    "auditability": {
+      "title": "Auditability (GPL v3)",
+      "text": "This software is free and open source, licensed under the <strong>GNU General Public License v3.0</strong>.<br><br>This means our privacy promise isn't just based on trust, but on <strong>verification</strong>. Anyone with technical knowledge can audit the source code to confirm there are no hidden data collection mechanisms."
+    },
+    "footer": {
+      "no_affiliation": "This project has no official affiliation with Spotify AB.",
+      "data_usage": "Data usage follows the terms of service of the user's own data export."
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Turn your data into clear, accessible insights.",
+      "subtitle": "Configure, analyze, and share only when and with whom you want.",
+      "footer": "Your data remains exclusively under your control."
+    }
+  }
+}

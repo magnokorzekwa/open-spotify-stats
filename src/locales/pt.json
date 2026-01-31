@@ -1,0 +1,148 @@
+{
+  "settings": {
+    "title": "Configurações",
+    "stream_criteria": "Critério de Stream",
+    "stream_desc": "Defina o tempo mínimo para que uma reprodução seja contabilizada.",
+    "seconds": "Segundos",
+    "timezone_title": "Fuso Horário",
+    "timezone_desc": "Ajuste o timezone para alinhar o histórico com sua localização.",
+    "language": "Idioma",
+    "language_desc": "Selecione o idioma da interface.",
+    "save": "Salvar Alterações"
+  },
+  "dashboard": {
+    "welcome": "Bem-vindo às suas estatísticas"
+  },
+  "upload": {
+    "title": "Envie seu arquivo",
+    "subtitle": "Arraste ou clique"
+  },
+  "footer": {
+    "brand": "Open Spotify Stats",
+    "legal": "Licenciado sob a GPL v3 · Código aberto · Privacidade em primeiro lugar"
+  },
+  "curious_stats": {
+    "title": "Estatísticas curiosas",
+    "hated_artist": {
+      "title": "Aff, pula esse cara!",
+      "description": "{count} \"Skips\" em menos de {limit} segundos no ano"
+    },
+    "day_night": {
+      "phrase": "Música é sempre bem-vinda, não importa a hora!",
+      "name": "qualquer hora",
+      "morning": {
+        "phrase": "Deus ajuda quem cedo madruga!",
+        "name": "a manhã"
+      },
+      "afternoon": {
+        "phrase": "A tarde é sua playlist.",
+        "name": "a tarde"
+      },
+      "night": {
+        "phrase": "A noite é onde a playlist vira terapia.",
+        "name": "a noite"
+      },
+      "preference": "Você prefere ouvir músicas durante {period}"
+    },
+    "platform": {
+      "default_phrase": "Vou querer dois plays para a viagem!",
+      "default_name": "celular",
+      "desktop": {
+        "phrase": "Entusiasta de computador",
+        "name": "computador"
+      },
+      "preference": "Você mais escuta música quando está no {device}"
+    }
+  },
+  "header": {
+    "logo": "Open Spotify Stats",
+    "privacy": "Privacidade",
+    "about": "Sobre"
+  },
+  "heatmap": {
+    "title": "Mapa de calor",
+    "scroll_hint": "← Deslize para ver o ano todo →"
+  },
+  "top_songs": {
+    "title": "Top 10 músicas mais escutadas",
+    "streams": "Streams",
+    "count": "Streams realizados: {count}",
+    "empty": "Nenhum registro encontrado."
+  },
+  "year_stats": {
+    "title": "Histórico de Streams",
+    "total_streams": "Total de Streams",
+    "tooltip_suffix": "streams",
+    "empty": "Nenhum dado disponível para o período."
+  },
+  "biological_clock": {
+    "title": "Relógio Biológico Musical",
+    "streams": "Streams",
+    "plays": "reproduções"
+  },
+  "top_artists": {
+    "title": "Top 5 artistas mais escutados",
+    "rank_one": "Top 1",
+    "streams_count": "Streams realizados: {count}",
+    "empty": "Nenhum registro encontrado."
+  },
+  "about": {
+    "title": "Sobre o Projeto",
+    "subtitle": "Redescobrindo sua história musical, um dado por vez.",
+    "mission": {
+      "title": "A Missão",
+      "text": "O Spotify Stats nasceu de uma necessidade simples: curiosidade. As plataformas de streaming coletam uma quantidade imensa de dados sobre nós, mas raramente nos dão as ferramentas para entender esses dados em profundidade.<br><br>Este projeto visa devolver esse poder ao usuário. Seja para relembrar a trilha sonora de um ano específico, entender como seu gosto musical mudou ou apenas ajustar estatísticas com precisão cirúrgica (como fusos horários e critérios de skip), aqui você está no comando."
+    },
+    "features": {
+      "wrapped": {
+        "title": "Além do Wrapped",
+        "text": "Por que esperar dezembro? Analise seus hábitos musicais de janeiro a janeiro, ou filtre por períodos específicos quando quiser."
+      },
+      "control": {
+        "title": "Controle Total",
+        "text": "Defina o que conta como um \"stream\". Ajuste o tempo mínimo de reprodução, fusos horários e ignore pulos acidentais."
+      },
+      "opensource": {
+        "title": "Código Aberto",
+        "text": "Transparência é a chave. Todo o código está disponível para estudo, modificação e contribuição da comunidade."
+      }
+    },
+    "powered_by": "Powered By",
+    "footer": {
+      "community_note": "Este projeto é mantido pela comunidade e distribuído sob a licença <strong>GPL v3</strong>.<br>Encontrou um bug ou tem uma ideia?",
+      "github_btn": "Ver no GitHub",
+      "developed_by": "Desenvolvido por <strong>Magno Korzekwa</strong>",
+      "copyright": "Copyright © 2026. Todos os direitos reservados sob a licença GPLv3.",
+      "version": "Versão {version}"
+    }
+  },
+  "privacy": {
+    "title": "Política de Privacidade",
+    "subtitle": "Transparência total sobre como seus dados são (e não são) processados.",
+    "zero_upload": {
+      "title": "Arquitetura Zero-Upload",
+      "text": "Este projeto opera sob uma filosofia estrita de <strong>processamento local (Client-Side)</strong>. Quando você seleciona seus arquivos JSON do Spotify, o processamento ocorre exclusivamente na memória RAM do seu navegador, utilizando tecnologias como <em>Web Workers</em>.",
+      "guarantee_title": "Garantia Técnica:",
+      "guarantee_text": "Nenhum byte dos seus arquivos é enviado para servidores externos, nuvem ou banco de dados. Se você desconectar sua internet após carregar a página, o sistema continuará funcionando perfeitamente."
+    },
+    "volatile_storage": {
+      "title": "Armazenamento Volátil",
+      "text": "Não utilizamos cookies de rastreamento nem bancos de dados persistentes para seus arquivos. O resultado do processamento existe apenas enquanto a aba do navegador estiver aberta.<br><br>Ao recarregar a página ou fechar o navegador, <strong>todos os dados importados são instantaneamente descartados</strong> da memória do seu dispositivo."
+    },
+    "auditability": {
+      "title": "Auditabilidade (GPL v3)",
+      "text": "Este software é livre e de código aberto, licenciado sob a <strong>GNU General Public License v3.0</strong>.<br><br>Isso significa que nossa promessa de privacidade não é baseada apenas em confiança, mas em <strong>verificação</strong>. Qualquer pessoa com conhecimento técnico pode auditar o código-fonte para confirmar que não existem mecanismos ocultos de coleta de dados."
+    },
+    "footer": {
+      "no_affiliation": "Este projeto não possui afiliação oficial com o Spotify AB.",
+      "data_usage": "O uso dos dados segue os termos de uso da exportação de dados do próprio usuário."
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Transforme seus dados em informação clara e acessível.",
+      "subtitle": "Configure, analise e compartilhe apenas quando e com quem você quiser.",
+      "footer": "Seus dados permanecem exclusivamente sob seu controle."
+    }
+  }
+}
