@@ -14,6 +14,23 @@ export default mergeConfig(
           inline: ['vuetify'],
         },
       },
+      coverage: {
+        provider: 'v8', 
+        reporter: ['text', 'json', 'html'],
+        thresholds: {
+          lines: 80,
+          functions: 80,
+          branches: 80,
+          statements: 80
+        },
+        exclude: [
+          'src/types/**',
+          'src/models/**',
+          '**/*.d.ts',
+          'vite.config.ts',
+          'vitest.config.ts'
+        ],
+      },
     }
   })
 )
