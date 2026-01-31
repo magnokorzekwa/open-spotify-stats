@@ -31,7 +31,7 @@ const features = computed(() => [
 ]);
 
 const openGithub = () => {
-  window.open('https://github.com/seu-usuario/seu-repo', '_blank');
+  window.open('https://github.com/magnokorzekwa/open-spotify-stats', '_blank');
 };
 </script>
 

@@ -95,7 +95,7 @@ describe('AboutView.vue', () => {
     
     await btn.trigger('click')
     
-    expect(windowOpenSpy).toHaveBeenCalledWith('https://github.com/seu-usuario/seu-repo', '_blank')
+    expect(windowOpenSpy).toHaveBeenCalledWith('https://github.com/magnokorzekwa/open-spotify-stats', '_blank')
   })
 
   it('renders the main logo icon', () => {
