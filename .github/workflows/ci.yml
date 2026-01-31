@@ -52,7 +52,7 @@ jobs:
         run: vercel build --prod --token=$VERCEL_TOKEN
 
       - name: Add Version Enviroment variable
-        run: vercel env add PACKAGE_VERSION ${{ github.ref_name }} --prod --token=$VERCEL_TOKEN
+        run: vercel env add PACKAGE_VERSION ${{ github.ref_name }} --token=$VERCEL_TOKEN
 
       - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
