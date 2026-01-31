@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "test": "vitest",
+    "test": "vitest --coverage",
     "test:ui": "vitest --ui",
     "preview": "vite preview",
     "build-only": "vite build",
@@ -33,6 +33,7 @@
     "@tsconfig/node24": "^24.0.3",
     "@types/node": "^24.10.1",
     "@vitejs/plugin-vue": "^6.0.2",
+    "@vitest/coverage-v8": "^4.0.18",
     "@vue/eslint-config-prettier": "^10.2.0",
     "@vue/eslint-config-typescript": "^14.6.0",
     "@vue/test-utils": "^2.4.6",
