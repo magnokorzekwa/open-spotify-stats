@@ -28,21 +28,28 @@ jobs:
       - name: Run tests with coverage
         run: npm test --run --coverage
 
-  deploy:
-    name: Deploy to Production
+  Deploy-Production:
+    needs: test
     runs-on: ubuntu-latest
     environment: production
-    needs: test
-    if: startsWith(github.ref, 'refs/tags/v') 
+    if: startsWith(github.ref, 'refs/tags/v')
+
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
     steps:
       - uses: actions/checkout@v4
 
       - name: Install Vercel CLI
-        run: npm install -g vercel
+        run: npm install -g vercel@latest
 
-      - name: Deploy to Vercel
-        run: vercel deploy --prod --yes \
-          --token=${{ secrets.VERCEL_TOKEN }} \
-          --project=${{ secrets.VERCEL_PROJECT_ID }}
-          --name open-spotify-stats
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=$VERCEL_TOKEN
+
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
