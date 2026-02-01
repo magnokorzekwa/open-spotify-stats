@@ -3,7 +3,7 @@ import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
-const projectVersion = import.meta.env.PACKAGE_VERSION || '1.0.0';
+const projectVersion = import.meta.env.VITE_PACKAGE_VERSION || '1.0.0';
 
 const techStack = [
   { name: 'Vue.js 3', icon: 'mdi-vuejs', color: '#42b883' },
