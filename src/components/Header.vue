@@ -1,9 +1,17 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 import LanguageSwitch from './LanguageSwitch.vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
+const drawer = ref(false);
+
+const menuItems = [
+  { text: 'header.privacy', path: '/privacy', icon: 'mdi-shield-account' },
+  { text: 'header.about', path: '/about', icon: 'mdi-information' },
+  { text: 'header.how_to_use', path: '/how-to-use', icon: 'mdi-help-circle' }
+];
 </script>
 
 <template>
@@ -15,13 +23,49 @@ const { t } = useI18n();
         </RouterLink>
       </div>
 
-      <nav class="nav">
+      <nav class="nav desktop-nav">
         <LanguageSwitch class="mr-2" />
-        <RouterLink to="/privacidade" class="link">{{ t('header.privacy') }}</RouterLink>
-        <RouterLink to="/sobre" class="link">{{ t('header.about') }}</RouterLink>
+        <RouterLink 
+          v-for="item in menuItems" 
+          :key="item.path" 
+          :to="item.path" 
+          class="link"
+        >
+          {{ t(item.text) }}
+        </RouterLink>
       </nav>
+
+      <div class="mobile-controls">
+        <LanguageSwitch class="mr-2" />
+        <v-btn icon="mdi-menu" variant="text" @click="drawer = true"></v-btn>
+      </div>
     </div>
   </header>
+
+  <v-navigation-drawer
+    v-model="drawer"
+    location="right"
+    temporary
+    class="mobile-drawer"
+  >
+    <div class="drawer-header pa-4">
+      <span class="logo">{{ t('header.logo') }}</span>
+      <v-btn icon="mdi-close" variant="text" density="compact" @click="drawer = false"></v-btn>
+    </div>
+
+    <v-divider></v-divider>
+
+    <v-list nav>
+      <v-list-item
+        v-for="item in menuItems"
+        :key="item.path"
+        :to="item.path"
+        :prepend-icon="item.icon"
+        :title="t(item.text)"
+        @click="drawer = false"
+      ></v-list-item>
+    </v-list>
+  </v-navigation-drawer>
 </template>
 
 <style lang="scss" scoped>
@@ -31,6 +75,8 @@ const { t } = useI18n();
   width: 100%;
   background-color: $secondaryBackground;
   border-bottom: 1px solid $borderColor;
+  position: relative;
+  z-index: 50;
 }
 
 .header-content {
@@ -38,10 +84,8 @@ const { t } = useI18n();
   align-items: center;
   justify-content: space-between;
   height: 64px;
-  
   max-width: 1920px;
   margin-inline: auto;
-  
   padding-inline: 24px;
 }
 
@@ -81,13 +125,31 @@ const { t } = useI18n();
   }
 }
 
-@media (max-width: 480px) {
-  .logo {
-    font-size: 1rem;
+.mobile-controls {
+  display: none;
+  align-items: center;
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobile-drawer {
+  background-color: $secondaryBackground !important;
+  border-left: 1px solid $borderColor;
+}
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
   }
-  .nav {
-    gap: 12px;
+
+  .mobile-controls {
+    display: flex;
   }
+
   .header-content {
     padding-inline: 16px;
   }

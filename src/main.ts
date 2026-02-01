@@ -18,7 +18,9 @@ import "iconify-icon"
 import App from './App.vue'
 import router from './router'
 import i18n from './plugins/i18n'
+import { createHead } from '@unhead/vue/client'
 
+const head = createHead()
 const app = createApp(App)
 const pinia = createPinia()
 const vuetify = createVuetify({
@@ -54,5 +56,6 @@ app.use(vuetify)
 app.use(pinia)
 app.use(router)
 app.use(i18n)
+app.use(head)
 
 app.mount('#app')

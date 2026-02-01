@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { useUiStore } from '@/stores/ui';
+import { useHead } from '@unhead/vue'
 
 import Header from './components/Header.vue';
 import Footer from './components/Footer.vue';
@@ -8,6 +9,25 @@ import LoaderOverlay from './components/LoaderOverlay.vue';
 
 const uiStore = useUiStore();
 const { loading } = storeToRefs(uiStore);
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Open Spotify Stats",
+        "url": "https://oss.korzekwa.com.br",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://oss.korzekwa.com.br/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      })
+    }
+  ]
+})
 </script>
 
 <template>

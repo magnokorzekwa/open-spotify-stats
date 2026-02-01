@@ -1,7 +1,19 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
+import { useHead } from '@unhead/vue';
+import { computed } from 'vue';
 
 const { t } = useI18n();
+
+useHead({
+  title: computed(() => `${t('header.privacy')} - ${t('header.logo')}`),
+  meta: [
+    {
+      name: 'description',
+      content: computed(() => t('privacy.subtitle'))
+    }
+  ]
+})
 </script>
 
 <template>

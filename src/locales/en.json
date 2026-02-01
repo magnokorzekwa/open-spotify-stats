@@ -57,7 +57,8 @@
   "header": {
     "logo": "Open Spotify Stats",
     "privacy": "Privacy",
-    "about": "About"
+    "about": "About",
+    "how_to_use": "How to use"
   },
   "heatmap": {
     "title": "Heatmap",
@@ -144,5 +145,38 @@
       "subtitle": "Configure, analyze, and share only when and with whom you want.",
       "footer": "Your data remains exclusively under your control."
     }
+  },
+  "tutorial": {
+    "title": "How to Request Your Spotify Data",
+    "subtitle": "To generate accurate statistics, we need your full streaming history. The standard Spotify API doesn't provide this data, so you need to request it manually.",
+    "important_note": {
+      "title": "Crucial: Extended Streaming History",
+      "text": "In step 3, you <strong>MUST</strong> select the option \"Extended streaming history\". The standard history only covers the last year and is not sufficient for a complete analysis."
+    },
+    "steps": {
+      "step1": {
+        "title": "Go to Privacy Settings",
+        "text": "Use the button at the bottom of this page to navigate directly to your Spotify account's privacy section."
+      },
+      "step2": {
+        "title": "Log In",
+        "text": "If you are not already logged in, enter your Spotify credentials to access the secure area."
+      },
+      "step3": {
+        "title": "Request Your Data",
+        "text": "Scroll down to the \"Download your data\" section. Check the box for <strong>\"Extended streaming history\"</strong>. This is essential. You may also check \"Account data\"."
+      },
+      "step4": {
+        "title": "Confirm via Email",
+        "text": "Spotify will send an email almost immediately to confirm the request. You must click the confirmation link inside this email to proceed."
+      },
+      "step5": {
+        "title": "Wait for Your Data",
+        "text": "Spotify may take anywhere from a few days to a few weeks to process the extended history. You will receive a second email with a link to download a ZIP file once it is ready."
+      }
+    },
+    "cta_text": "Ready to start the process?",
+    "cta_btn": "Go to Spotify Privacy Settings",
+    "cta_disclaimer": "This link opens a new tab on the official Spotify website."
   }
 }

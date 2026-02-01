@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://oss.korzekwa.com.br/sitemap.xml

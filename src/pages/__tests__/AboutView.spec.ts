@@ -2,6 +2,12 @@ import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import AboutView from '@/pages/AboutView.vue'
 
+const useHeadSpy = vi.fn()
+
+vi.mock('@unhead/vue', () => ({
+  useHead: (obj: any) => useHeadSpy(obj)
+}))
+
 vi.mock('vue-i18n', () => ({
   useI18n: () => ({
     t: (key: string, params?: any) => params ? `${key} ${JSON.stringify(params)}` : key,
@@ -37,6 +43,22 @@ describe('AboutView.vue', () => {
     expect(wrapper.find('.page-title').text()).toBe('about.title')
     expect(wrapper.find('.subtitle-text').text()).toBe('about.subtitle')
   })
+
+  it('sets the page head metadata correctly', () => {
+    mountComponent()
+
+    expect(useHeadSpy).toHaveBeenCalled()
+
+    const lastCall =
+      useHeadSpy.mock.calls[useHeadSpy.mock.calls.length - 1][0]
+
+    expect(lastCall.title.value).toBe('header.about - header.logo')
+
+    expect(lastCall.meta).toHaveLength(1)
+    expect(lastCall.meta[0].name).toBe('description')
+    expect(lastCall.meta[0].content.value).toBe('about.subtitle')
+  })
+
 
   it('renders the mission card', () => {
     const wrapper = mountComponent()

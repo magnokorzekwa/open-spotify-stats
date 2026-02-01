@@ -1,9 +1,20 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useHead } from '@unhead/vue';
 
 const { t } = useI18n();
 const projectVersion = import.meta.env.VITE_PACKAGE_VERSION || '1.0.0';
+
+useHead({
+  title: computed(() => `${t('header.about')} - ${t('header.logo')}`),
+  meta: [
+    {
+      name: 'description',
+      content: computed(() => t('about.subtitle'))
+    }
+  ]
+})
 
 const techStack = [
   { name: 'Vue.js 3', icon: 'mdi-vuejs', color: '#42b883' },

@@ -57,7 +57,8 @@
   "header": {
     "logo": "Open Spotify Stats",
     "privacy": "Privacidade",
-    "about": "Sobre"
+    "about": "Sobre",
+    "how_to_use": "Como usar"
   },
   "heatmap": {
     "title": "Mapa de calor",
@@ -144,5 +145,38 @@
       "subtitle": "Configure, analise e compartilhe apenas quando e com quem você quiser.",
       "footer": "Seus dados permanecem exclusivamente sob seu controle."
     }
+  },
+  "tutorial": {
+    "title": "Como obter seus dados do Spotify",
+    "subtitle": "Para gerar estatísticas precisas, precisamos do seu histórico completo de streaming. A API padrão do Spotify não fornece esses dados, então você precisa solicitá-los manualmente.",
+    "important_note": {
+      "title": "Muito Importante: Histórico Estendido",
+      "text": "No passo 3, você <strong>DEVE</strong> selecionar a opção \"Histórico estendido de streaming\" (Extended streaming history). O histórico padrão cobre apenas o último ano e não é suficiente para uma análise completa."
+    },
+    "steps": {
+      "step1": {
+        "title": "Acesse as Configurações de Privacidade",
+        "text": "Use o botão no final desta página para ir diretamente à seção de privacidade da sua conta Spotify."
+      },
+      "step2": {
+        "title": "Faça Login",
+        "text": "Se ainda não estiver logado, insira suas credenciais do Spotify para acessar a área segura."
+      },
+      "step3": {
+        "title": "Solicite seus dados",
+        "text": "Role até a seção \"Baixe seus dados\". Marque a caixa <strong>\"Histórico estendido de streaming\"</strong>. Isso é essencial. Você também pode marcar \"Dados da conta\"."
+      },
+      "step4": {
+        "title": "Confirme o primeiro e-mail",
+        "text": "O Spotify enviará um e-mail quase imediatamente para confirmar que foi você quem fez o pedido. Clique no link de confirmação neste e-mail."
+      },
+      "step5": {
+        "title": "Aguarde o pacote de dados",
+        "text": "O Spotify pode levar de alguns dias até algumas semanas para processar o histórico estendido. Você receberá um segundo e-mail com um link para baixar um arquivo ZIP quando estiver pronto."
+      }
+    },
+    "cta_text": "Pronto para começar o processo?",
+    "cta_btn": "Ir para Privacidade do Spotify",
+    "cta_disclaimer": "Este link abre uma nova aba no site oficial do Spotify."
   }
 }

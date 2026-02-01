@@ -1,8 +1,24 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { createTestingPinia } from '@pinia/testing';
 import { useSettingsStore } from '@/stores/settings';
 import LanguageSwitch from '@/components/LanguageSwitch.vue';
+import { ref, nextTick } from 'vue';
+
+const locale = ref('pt');
+
+vi.mock('vue-i18n', () => ({
+  useI18n: () => ({
+    locale
+  }),
+  createI18n: () => ({
+    global: {
+      locale: { value: 'pt' },
+      t: (key: string) => key
+    },
+    install: () => {}
+  })
+}));
 
 const VListItemStub = {
   props: ['value', 'active'],
@@ -10,7 +26,12 @@ const VListItemStub = {
 };
 
 describe('LanguageSwitch.vue', () => {
-  const mountComponent = (initialLang = 'pt') => {
+  beforeEach(() => {
+    locale.value = 'pt';
+    vi.clearAllMocks();
+  });
+
+  const mountComponent = (initialStoreLang = 'pt') => {
     return mount(LanguageSwitch, {
       global: {
         plugins: [
@@ -18,7 +39,7 @@ describe('LanguageSwitch.vue', () => {
             createSpy: vi.fn,
             initialState: {
               settings: {
-                language: initialLang
+                language: initialStoreLang
               }
             }
           })
@@ -43,37 +64,55 @@ describe('LanguageSwitch.vue', () => {
     });
   };
 
-  it('renders correctly with default language PT', () => {
+  it('renders correctly based on i18n locale', async () => {
+    locale.value = 'pt';
     const wrapper = mountComponent('pt');
     expect(wrapper.find('.lang-btn').text()).toContain('PT');
-  });
 
-  it('renders correctly with language EN', () => {
-    const wrapper = mountComponent('en');
+    locale.value = 'en';
+    await nextTick();
     expect(wrapper.find('.lang-btn').text()).toContain('EN');
   });
 
-  it('renders all available languages', () => {
-    const wrapper = mountComponent();
-    const items = wrapper.findAll('.lang-item');
-    expect(items).toHaveLength(2);
-    expect(items[0].text()).toContain('Português');
-    expect(items[1].text()).toContain('English');
+  it('syncs i18n locale to match store on mount if store has value', () => {
+    locale.value = 'pt';
+    mountComponent('en');
+    
+    expect(locale.value).toBe('en');
   });
 
-  it('changes language when an item is clicked', async () => {
+  it('syncs store to match i18n locale on mount if store is empty or different', () => {
+    locale.value = 'en';
+    mountComponent(''); 
+    
+    const store = useSettingsStore();
+    expect(store.setLanguage).toHaveBeenCalledWith('en');
+  });
+
+  it('updates i18n locale when store changes', async () => {
+    const wrapper = mountComponent('pt');
+    const store = useSettingsStore();
+    
+    store.language = 'en';
+    await nextTick();
+
+    expect(locale.value).toBe('en');
+  });
+
+  it('updates both store and i18n when an item is clicked', async () => {
     const wrapper = mountComponent('pt');
     const store = useSettingsStore();
 
     const enItem = wrapper.findAll('.lang-item').find(item => item.text().includes('English'));
     
-    expect(enItem).toBeDefined();
     await enItem?.trigger('click');
 
     expect(store.setLanguage).toHaveBeenCalledWith('en');
+    expect(locale.value).toBe('en');
   });
 
-  it('passes active prop to the correct list item', () => {
+  it('passes active prop correctly based on current locale', () => {
+    locale.value = 'en';
     const wrapper = mountComponent('en');
     const items = wrapper.findAllComponents(VListItemStub);
     

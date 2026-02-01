@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { useSettingsStore } from '@/stores/settings';
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const settingsStore = useSettingsStore();
+const { locale } = useI18n();
 
 const languages = [
   { title: 'Português', value: 'pt', code: 'PT' },
@@ -10,12 +12,25 @@ const languages = [
 ];
 
 const currentLangCode = computed(() => {
-  return languages.find(l => l.value === settingsStore.language)?.code || 'PT';
+  return languages.find(l => l.value === locale.value)?.code || 'PT';
 });
 
 const selectLanguage = (lang: 'pt' | 'en') => {
   settingsStore.setLanguage(lang);
+  locale.value = lang;
 };
+
+if (settingsStore.language && settingsStore.language !== locale.value) {
+  locale.value = settingsStore.language;
+} else if (settingsStore.language !== locale.value) {
+  settingsStore.setLanguage(locale.value as 'pt' | 'en');
+}
+
+watch(() => settingsStore.language, (newLang) => {
+  if (newLang && locale.value !== newLang) {
+    locale.value = newLang;
+  }
+});
 </script>
 
 <template>
@@ -38,7 +53,7 @@ const selectLanguage = (lang: 'pt' | 'en') => {
         :key="lang.value"
         :value="lang.value"
         @click="selectLanguage(lang.value as 'pt' | 'en')"
-        :active="settingsStore.language === lang.value"
+        :active="locale === lang.value"
         class="lang-item"
       >
         <v-list-item-title class="text-body-2">

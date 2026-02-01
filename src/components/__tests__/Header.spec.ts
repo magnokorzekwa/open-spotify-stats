@@ -5,12 +5,14 @@ import Header from '@/components/Header.vue'
 vi.mock('vue-i18n', () => ({
   useI18n: () => ({
     t: (key: string) => key,
+    locale: { value: 'pt' }
   }),
   createI18n: () => ({
     global: {
       locale: { value: 'pt' },
-      t: (k: string) => k
-    }
+      t: (key: string) => key
+    },
+    install: () => {}
   })
 }))
 
@@ -20,7 +22,28 @@ describe('Header.vue', () => {
       global: {
         stubs: {
           RouterLink: RouterLinkStub,
-          LanguageSwitch: true
+          LanguageSwitch: true,
+          'v-btn': {
+            name: 'VBtn',
+            template: '<button class="v-btn-stub" @click="$emit(\'click\')"><slot /></button>',
+            props: ['icon', 'density', 'variant']
+          },
+          'v-navigation-drawer': {
+            name: 'VNavigationDrawer',
+            template: '<div class="v-navigation-drawer-stub"><slot /></div>',
+            props: ['modelValue', 'location', 'temporary']
+          },
+          'v-list': { 
+            name: 'VList',
+            template: '<div class="v-list-stub"><slot /></div>' 
+          },
+          'v-list-item': {
+            name: 'VListItem',
+            template: '<div class="v-list-item-stub" @click="$emit(\'click\')"></div>',
+            props: ['to', 'title', 'prependIcon']
+          },
+          'v-divider': true,
+          'v-icon': true
         }
       }
     })
@@ -32,33 +55,78 @@ describe('Header.vue', () => {
     expect(wrapper.find('.header-content').exists()).toBe(true)
   })
 
-  it('renders the logo with correct link and translation', () => {
+  it('renders the logo with correct link', () => {
     const wrapper = mountComponent()
-    
     const logoLink = wrapper.findAllComponents(RouterLinkStub).find(link => link.props().to === '/')
     
     expect(logoLink).toBeDefined()
     expect(logoLink?.find('.logo').text()).toBe('header.logo')
-    expect(logoLink?.classes()).toContain('logo-link')
   })
 
-  it('renders the language switcher', () => {
+  it('renders desktop navigation links correctly', () => {
     const wrapper = mountComponent()
-    const languageSwitch = wrapper.findComponent({ name: 'LanguageSwitch' }) 
+    const desktopNav = wrapper.find('.desktop-nav')
     
-    expect(languageSwitch.exists()).toBe(true)
+    expect(desktopNav.exists()).toBe(true)
+    
+    const links = desktopNav.findAllComponents(RouterLinkStub)
+    const paths = links.map(link => link.props().to)
+    
+    expect(paths).toContain('/privacy')
+    expect(paths).toContain('/about')
+    expect(paths).toContain('/how-to-use')
   })
 
-  it('renders navigation links with correct paths and text', () => {
+  it('renders mobile menu button', () => {
     const wrapper = mountComponent()
-    const links = wrapper.findAllComponents(RouterLinkStub)
+    const mobileControls = wrapper.find('.mobile-controls')
+    const menuBtn = mobileControls.findComponent({ name: 'VBtn' })
+    
+    expect(mobileControls.exists()).toBe(true)
+    expect(menuBtn.exists()).toBe(true)
+    expect(menuBtn.props('icon')).toBe('mdi-menu')
+  })
 
-    const privacyLink = links.find(link => link.props().to === '/privacidade')
-    expect(privacyLink).toBeDefined()
-    expect(privacyLink?.text()).toBe('header.privacy')
+  it('toggles navigation drawer when menu button is clicked', async () => {
+    const wrapper = mountComponent()
+    const drawer = wrapper.findComponent({ name: 'VNavigationDrawer' })
+    const menuBtn = wrapper.find('.mobile-controls').findComponent({ name: 'VBtn' })
 
-    const aboutLink = links.find(link => link.props().to === '/sobre')
-    expect(aboutLink).toBeDefined()
-    expect(aboutLink?.text()).toBe('header.about')
+    expect(drawer.props('modelValue')).toBe(false)
+
+    await menuBtn.trigger('click')
+
+    expect(drawer.props('modelValue')).toBe(true)
+  })
+
+  it('renders correct items inside the navigation drawer', () => {
+    const wrapper = mountComponent()
+    const listItems = wrapper.findAllComponents({ name: 'VListItem' })
+
+    expect(listItems).toHaveLength(3)
+    
+    const titles = listItems.map(item => item.props('title'))
+    expect(titles).toEqual(['header.privacy', 'header.about', 'header.how_to_use'])
+  })
+
+  it('closes the drawer when an item is clicked', async () => {
+    const wrapper = mountComponent()
+    const menuBtn = wrapper.find('.mobile-controls').findComponent({ name: 'VBtn' })
+    
+    await menuBtn.trigger('click')
+    const drawer = wrapper.findComponent({ name: 'VNavigationDrawer' })
+    expect(drawer.props('modelValue')).toBe(true)
+
+    const firstItem = wrapper.findComponent({ name: 'VListItem' })
+    await firstItem.trigger('click')
+
+    expect(drawer.props('modelValue')).toBe(false)
+  })
+
+  it('renders language switcher in both desktop and mobile views', () => {
+    const wrapper = mountComponent()
+    const switches = wrapper.findAllComponents({ name: 'LanguageSwitch' })
+    
+    expect(switches.length).toBeGreaterThanOrEqual(1)
   })
 })

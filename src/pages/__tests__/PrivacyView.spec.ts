@@ -1,6 +1,12 @@
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import PrivacyView from '@/pages/PrivacyView.vue'
+
+const useHeadSpy = vi.fn()
+
+vi.mock('@unhead/vue', () => ({
+  useHead: (obj: any) => useHeadSpy(obj)
+}))
 
 vi.mock('vue-i18n', () => ({
   useI18n: () => ({
@@ -15,6 +21,11 @@ const VIconStub = {
 }
 
 describe('PrivacyView.vue', () => {
+
+  beforeEach(() => {
+    useHeadSpy.mockClear()
+  })
+
   const mountComponent = () => {
     return mount(PrivacyView, {
       global: {
@@ -30,12 +41,27 @@ describe('PrivacyView.vue', () => {
     })
   }
 
+  it('sets the page head metadata correctly', () => {
+    mountComponent()
+
+    expect(useHeadSpy).toHaveBeenCalled()
+
+    const lastCall =
+      useHeadSpy.mock.calls[useHeadSpy.mock.calls.length - 1][0]
+
+    expect(lastCall.title.value).toBe('header.privacy - header.logo')
+
+    expect(lastCall.meta).toHaveLength(1)
+    expect(lastCall.meta[0].name).toBe('description')
+    expect(lastCall.meta[0].content.value).toBe('privacy.subtitle')
+  })
+
   it('renders the page header correctly', () => {
     const wrapper = mountComponent()
-    
+
     expect(wrapper.find('.page-title').text()).toBe('privacy.title')
     expect(wrapper.find('.subtitle-text').text()).toBe('privacy.subtitle')
-    
+
     const headerIcon = wrapper.findComponent(VIconStub)
     expect(headerIcon.props('icon')).toBe('mdi-shield-lock-outline')
   })
@@ -46,7 +72,7 @@ describe('PrivacyView.vue', () => {
 
     expect(section.find('h2').text()).toBe('privacy.zero_upload.title')
     expect(section.find('.body-text').text()).toBe('privacy.zero_upload.text')
-    
+
     const alert = wrapper.find('.v-alert')
     expect(alert.exists()).toBe(true)
     expect(alert.text()).toContain('privacy.zero_upload.guarantee_title')
@@ -56,7 +82,7 @@ describe('PrivacyView.vue', () => {
   it('renders secondary privacy cards', () => {
     const wrapper = mountComponent()
     const cards = wrapper.findAll('.privacy-card')
-    
+
     expect(cards).toHaveLength(3)
 
     expect(cards[1].find('h3').text()).toBe('privacy.volatile_storage.title')
@@ -69,7 +95,7 @@ describe('PrivacyView.vue', () => {
   it('renders legal footer with affiliation notes', () => {
     const wrapper = mountComponent()
     const footer = wrapper.find('.legal-footer')
-    
+
     expect(footer.exists()).toBe(true)
     expect(footer.text()).toContain('privacy.footer.no_affiliation')
     expect(footer.text()).toContain('privacy.footer.data_usage')
