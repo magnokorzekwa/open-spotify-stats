@@ -50,4 +50,4 @@ You are free to use, study, modify, and distribute this software, provided that 
 
 > This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-Copyright (c) 2026 Your Name
+Copyright (c) 2026 Magno Korzekwa
